@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import { JobDetails } from './JobDetails'
-import { InputForm } from './InputForm.js'
-import { Preview } from './Preview.js'
-import logo from './logo.svg'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import { JobDetails } from './components/JobDetails'
+import { InputForm } from './components/InputForm.js'
+import { Preview } from './components/Preview.js'
 import './App.css'
 
 class App extends Component {
@@ -26,14 +25,18 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  submitMessage = message => {
+    this.setState({ message, results: 'Your application was submitted!', formClass: 'success' })
+  }
+
   render() {
     return (
       <div>
         <Header />
         <main>
           <JobDetails jobData={this.state.data} />
-          <InputForm />
-          <preview />
+          <InputForm submitMessage={this.submitMessage} />
+          <Preview submitMessage={this.submitMessage} message={this.state.message} />
         </main>
         <Footer />
       </div>

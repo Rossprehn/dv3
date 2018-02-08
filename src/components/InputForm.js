@@ -2,12 +2,11 @@ import React from 'react'
 
 export class InputForm extends React.Component {
   state = { formClass: 'pending' }
-  submitHandler(event) {
+
+  submitHandler = event => {
     event.preventDefault()
-    this.setState({ results: 'Your application was submitted!', formClass: 'succes s' })
-    //   document.querySelector('#message').textContent = '!'
-    //   document.querySelector('#application-preview').classList.add('hidden')
-    //   document.querySelector('#application-preview').textContent = ''
+    const application = event.target.querySelector('#application-text')
+    this.props.submitMessage(application.value)
   }
 
   render() {
