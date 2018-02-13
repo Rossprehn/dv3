@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import { JobDetails } from './components/JobDetails'
-import { InputForm } from './components/InputForm.js'
-import { Preview } from './components/Preview.js'
+import logo from './logo.svg'
 import './App.css'
+
+import Header from './components/Header'
+import { JobDetails } from './components/JobDetails'
+import { Preview } from './components/Preview'
+import InputForm from './components/InputForm'
+import Footer from './components/Footer'
 
 class App extends Component {
   constructor(props) {
@@ -35,9 +37,10 @@ class App extends Component {
   handleChange = e => {
     this.setState({ text: e.target.value })
   }
+
   handleSubmit = e => {
     e.preventDefault()
-    this.setState({ message: 'Your application was submitted' })
+    this.setState({ message: 'Your application was submitted!' })
   }
 
   previewToggle = () => {
@@ -50,7 +53,7 @@ class App extends Component {
       <div>
         <Header />
         <main>
-          <JobDetails Data={this.state.data} />
+          <JobDetails data={this.state.data} />
           <InputForm
             handleChange={this.handleChange}
             message={this.state.message}
