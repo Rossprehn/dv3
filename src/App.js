@@ -10,23 +10,39 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {}
+      data: {},
+      text: [],
+      message: '',
+      show: false
     }
   }
 
   componentDidMount() {
-    fetch('./listing.json')
+    this.getListing()
+  }
+
+  getListing = () => {
+    return fetch('./listing.json')
       .then(response => response.json())
       .then(response => {
         this.setState({
           data: response
         })
       })
-      .catch(err => console.log(err))
+      .catch(error => console.log(error))
   }
 
-  submitMessage = message => {
-    this.setState({ message, results: 'Your application was submitted!', formClass: 'success' })
+  handleChange = e => {
+    this.setState({ text: e.target.value })
+  }
+  handleSubmit = e => {
+    e.preventDefault()
+    this.setState({ message: 'Your application was submitted' })
+  }
+
+  previewToggle = () => {
+    const onOrOff = !this.state.show
+    this.setState({ show: onOrOff })
   }
 
   render() {
@@ -34,9 +50,18 @@ class App extends Component {
       <div>
         <Header />
         <main>
-          <JobDetails jobData={this.state.data} />
-          <InputForm submitMessage={this.submitMessage} />
-          <Preview submitMessage={this.submitMessage} message={this.state.message} />
+          <JobDetails Data={this.state.data} />
+          <InputForm
+            handleChange={this.handleChange}
+            message={this.state.message}
+            handleSubmit={this.handleSubmit}
+            value={this.state.value}
+          />
+          <Preview
+            previewToggle={this.previewToggle}
+            show={this.state.show}
+            text={this.state.text}
+          />
         </main>
         <Footer />
       </div>
