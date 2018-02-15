@@ -1,6 +1,6 @@
 # Galvanize Dinosaurs - Apply
 
-firebase:
+firebase:https://dino3-c1791.firebaseapp.com
 
 ## Instructions
 
