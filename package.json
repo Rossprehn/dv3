@@ -18,7 +18,9 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^1.4.2"
+  },
   "author": "",
   "license": "ISC"
 }
